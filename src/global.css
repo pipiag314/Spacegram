@@ -3,5 +3,13 @@
 @tailwind utilities;
 
 @layer base {
-    
+    *,
+    *::before,
+    *::after {
+        @apply box-border list-none p-0 m-0 scroll-smooth
+    }
+
+    body {
+        @apply bg-dark-1 text-white min-h-screen font-inter
+    }
 }
