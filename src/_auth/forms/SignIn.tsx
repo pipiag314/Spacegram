@@ -13,13 +13,17 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useUserContext } from "@/context/UserContext";
 import Loader from "@/components/shared/Loader";
+import { signInAccount } from "@/lib/appwrite/api";
+import { toast } from "@/components/ui/use-toast";
 
 const SignIn = () => {
   const { isLoading: isUserLoading, checkAuthUser } = useUserContext();
 
+  const navigate = useNavigate();
+  
   // 1. Define your form.
   const form = useForm<z.infer<typeof signInValidation>>({
     resolver: zodResolver(signInValidation),
@@ -30,10 +34,26 @@ const SignIn = () => {
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof signInValidation>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof signInValidation>) {
+    const session = await signInAccount({
+      email: values.email,
+      password: values.password
+    })
+
+    if(!session) {
+      toast({title: "Sign In failed, try again later"})
+    }
+
+    const isLoggedIn = await checkAuthUser();
+
+    if(isLoggedIn) {
+      form.reset();
+      navigate("/");
+    } else {
+      return toast({ title: "Sign In failed, try again later"})
+    }
+    
+    
   }
 
   return (
