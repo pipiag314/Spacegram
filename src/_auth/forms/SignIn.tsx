@@ -7,20 +7,25 @@ import { z } from "zod";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Link } from "react-router-dom";
+import { useUserContext } from "@/context/UserContext";
+import Loader from "@/components/shared/Loader";
 
 const SignIn = () => {
+  const { isLoading: isUserLoading, checkAuthUser } = useUserContext();
+
   // 1. Define your form.
   const form = useForm<z.infer<typeof signInValidation>>({
     resolver: zodResolver(signInValidation),
     defaultValues: {
-      username: "",
+      email: "",
+      password: "",
     },
   });
 
@@ -32,8 +37,8 @@ const SignIn = () => {
   }
 
   return (
-    <div>
-      <Form {...form}>
+    <Form {...form}>
+      <div className="flex-center flex-col sm:w-[420px]">
         <div className="flex justify-center font-bold text-3xl gap-2">
           <img
             width={30}
@@ -51,12 +56,17 @@ const SignIn = () => {
           onSubmit={form.handleSubmit(onSubmit)}>
           <FormField
             control={form.control}
-            name="username"
+            name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Username</FormLabel>
+                <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input className="input" type="text" placeholder="Enter your Username" {...field} />
+                  <Input
+                    className="input"
+                    type="text"
+                    placeholder="Enter your Email"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -69,16 +79,35 @@ const SignIn = () => {
               <FormItem>
                 <FormLabel>Password</FormLabel>
                 <FormControl>
-                  <Input className="input" type="password" placeholder="Enter your Password" {...field} />
+                  <Input
+                    className="input"
+                    type="password"
+                    placeholder="Enter your Password"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
-          <Button type="submit">Submit</Button>
+          <Button type="submit" className="button-primary">
+            {isUserLoading ? (
+              <div className="flex-center gap-2">
+                <Loader /> Loading...
+              </div>
+            ) : (
+              "Sign In"
+            )}
+          </Button>
+          <p className="text-sm text-light-3 md:text-base text-center">
+            Don't have an account?{" "}
+            <Link className="underline text-primary-500" to="/sign-up">
+              Sign Up
+            </Link>
+          </p>
         </form>
-      </Form>
-    </div>
+      </div>
+    </Form>
   );
 };
 export default SignIn;
