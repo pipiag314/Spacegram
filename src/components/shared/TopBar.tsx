@@ -40,7 +40,7 @@ const TopBar = () => {
             <img src="/assets/icons/logout.svg" alt="logout" />
           </Button>
           <Link to={`/profile/${user.id}`} className="flex-center gap-3">
-            <img src={user.imageUrl || "/assets/images/profile-placeholder.svg"} className="rounded-full" width={30} alt="user profile photo" />
+            <img src={user.imageUrl || "/assets/icons/profile-placeholder.svg"} className="rounded-full" width={30} alt="user profile photo" />
           </Link>
         </div>
       </div>

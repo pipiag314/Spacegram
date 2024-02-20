@@ -97,5 +97,13 @@
   .button-ghost {
     @apply flex gap-4 items-center justify-start hover:bg-transparent hover:text-white !important;
   }
+
+  .sidebar {
+    @apply flex flex-col max-md:hidden w-[250px] py-5 px-5 bg-dark-2;
+  }
+
+  .sidebar-link {
+    @apply flex items-center gap-4 p-2 rounded-lg hover:bg-primary-500;
+  }
   
 }
