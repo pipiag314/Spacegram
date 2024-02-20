@@ -37,6 +37,7 @@ export const UserContextProvider = ({
 
   const checkAuthUser = async () => {
     try {
+      setIsLoading(true);
       const currentLoggedInAccount = await getCurrentUser();
       if (!currentLoggedInAccount) return false;
       if (currentLoggedInAccount) {
