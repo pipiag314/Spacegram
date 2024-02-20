@@ -69,9 +69,10 @@ export const UserContextProvider = ({
       localStorage.getItem("cookieFallback") === "[]"
     ) {
       navigate("/sign-in");
+    } else {
+      checkAuthUser();
     }
 
-    checkAuthUser();
   }, []);
 
   const value = {
