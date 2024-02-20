@@ -75,3 +75,13 @@ export const getCurrentUser = async () => {
         console.log("Error while getting current user: ", error);
     }
 } 
+
+export const signOutFromAccount = async () => {
+    try {
+        const session = await account.deleteSession("current");
+        return session;
+    
+    } catch (error) {
+        console.log("Error while signing out account: ", error);
+    }
+}
