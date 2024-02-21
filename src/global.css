@@ -78,6 +78,10 @@
     @apply flex justify-center items-center;
   }
 
+  .flex-between {
+    @apply flex justify-between items-center;
+  }
+
   .input {
     @apply h-12 bg-dark-4 border-none placeholder:text-light-4 focus-visible:ring-1 focus-visible:ring-offset-1 ring-offset-light-3 !important;
   }
@@ -85,4 +89,21 @@
   .button-primary {
     @apply bg-primary-500 hover:bg-primary-600 text-light-1 flex gap-2 !important;
   }
+
+  .topbar {
+    @apply sticky top-0 z-[100] bg-dark-2 w-full md:hidden;
+  }
+
+  .button-ghost {
+    @apply flex gap-4 items-center justify-start hover:bg-transparent hover:text-white !important;
+  }
+
+  .sidebar {
+    @apply flex flex-col max-md:hidden w-[250px] py-5 px-5 bg-dark-2;
+  }
+
+  .sidebar-link {
+    @apply flex items-center gap-4 p-2 rounded-lg hover:bg-primary-500;
+  }
+  
 }

@@ -37,6 +37,7 @@ export const UserContextProvider = ({
 
   const checkAuthUser = async () => {
     try {
+      setIsLoading(true);
       const currentLoggedInAccount = await getCurrentUser();
       if (!currentLoggedInAccount) return false;
       if (currentLoggedInAccount) {
@@ -69,9 +70,10 @@ export const UserContextProvider = ({
       localStorage.getItem("cookieFallback") === "[]"
     ) {
       navigate("/sign-in");
+    } else {
+      checkAuthUser();
     }
 
-    checkAuthUser();
   }, []);
 
   const value = {
