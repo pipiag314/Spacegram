@@ -54,7 +54,7 @@ const SideBar = () => {
               <img
                 src={link.imageUrl}
                 alt={link.alt}
-                className={`group-hover:invert-white ${isActiveLink && "grayscale"}`}
+                className={`group-hover:brightness-0 ${isActiveLink && "brightness-0"}`}
               />{" "}
               {link.label}
             </NavLink>
