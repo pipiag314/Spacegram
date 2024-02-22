@@ -105,5 +105,9 @@
   .sidebar-link {
     @apply flex items-center gap-4 p-2 rounded-lg hover:bg-primary-500;
   }
+
+  .bottombar {
+    @apply sticky bottom-0 md:hidden z-[100] bg-dark-1 w-full p-5;
+  }
   
 }
