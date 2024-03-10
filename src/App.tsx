@@ -2,7 +2,7 @@ import RootLayout from "./_root/RootLayout";
 import AuthLayout from "./_auth/AuthLayout";
 import SignIn from "./_auth/forms/SignIn";
 import SignUp from "./_auth/forms/SignUp";
-import { Home } from "./_root/pages";
+import { CreatePost, Explore, Home, People, Saved, UpdateProfile } from "./_root/pages";
 
 import { Toaster } from "./components/ui/toaster";
 
@@ -22,6 +22,11 @@ const App = () => {
 
         <Route element={<RootLayout />}>
           <Route index element={<Home />} />
+          <Route path="/explore" element={<Explore />} />
+          <Route path="/people" element={<People />} />
+          <Route path="/saved" element={<Saved />} />
+          <Route path="/create-post" element={<CreatePost />} />
+          <Route path="/update-profile" element={<UpdateProfile />} />
         </Route>
       </Routes>
       <Toaster />

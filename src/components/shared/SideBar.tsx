@@ -33,33 +33,42 @@ const SideBar = () => {
           Spacegram
         </div>
       </Link>
-      <div className="mt-10 flex gap-3">
-        <img
-          src={user.imageUrl || "/assets/icons/profile-placeholder.svg"}
-          alt="profile photo"
-          width={50}
-          className="rounded-full"
-        />
-        <div>
-          <h2 className="text-lg font-bold">{user.name}</h2>
-          <p className="text-light-4">@{user.username}</p>
+      <Link to="/update-profile">
+        <div className="mt-10 flex gap-3">
+          <img
+            src={user.imageUrl || "/assets/icons/profile-placeholder.svg"}
+            alt="profile photo"
+            width={50}
+            className="rounded-full"
+          />
+          <div>
+            <h2 className="text-lg font-bold">{user.name}</h2>
+            <p className="text-light-4">@{user.username}</p>
+          </div>
         </div>
-      </div>
+      </Link>
       <ul className="flex flex-col gap-5 mt-10 h-3/4">
         {sideBarLinks.map((link) => {
           const isActiveLink = pathname === link.path;
           return (
-          <li key={link.label}>
-            <NavLink to={link.path} className={`sidebar-link group ${isActiveLink ? "bg-primary-500" : ""}`}>
-              <img
-                src={link.imageUrl}
-                alt={link.alt}
-                className={`group-hover:brightness-0 ${isActiveLink && "brightness-0"}`}
-              />{" "}
-              {link.label}
-            </NavLink>
-          </li>
-        )})}
+            <li key={link.label}>
+              <NavLink
+                to={link.path}
+                className={`sidebar-link group ${
+                  isActiveLink ? "bg-primary-500" : ""
+                }`}>
+                <img
+                  src={link.imageUrl}
+                  alt={link.alt}
+                  className={`group-hover:brightness-0 ${
+                    isActiveLink && "brightness-0"
+                  }`}
+                />{" "}
+                {link.label}
+              </NavLink>
+            </li>
+          );
+        })}
       </ul>
 
       <div className="">
