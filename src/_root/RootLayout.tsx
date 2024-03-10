@@ -10,7 +10,7 @@ const RootLayout = () => {
       <TopBar />
       <SideBar />
 
-      <section className="h-full">
+      <section className="h-full w-full lg:w-3/5">
         <Outlet />
       </section>
 
