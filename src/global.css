@@ -99,7 +99,7 @@
   }
 
   .sidebar {
-    @apply flex flex-col max-md:hidden w-[250px] py-5 px-5 bg-dark-2;
+    @apply flex sticky flex-col max-md:hidden w-[250px] py-5 px-5 bg-dark-2;
   }
 
   .sidebar-link {
@@ -130,7 +130,7 @@
   }
 
   .main-container {
-    @apply flex flex-col flex-1 items-center gap-10 overflow-scroll py-10 md:px-8 lg:p-14 custom-scrollbar;
+    @apply flex flex-col flex-1 items-center gap-10 overflow-y-scroll h-[100vh] py-10 md:px-8 lg:p-14 custom-scrollbar;
   }
 
 

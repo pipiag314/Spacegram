@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea"
 import { Input } from "../ui/input";
+import FileUploader from "../shared/FileUploader";
 
 const PostForm = () => {
   // 1. Define your form.
@@ -55,7 +56,8 @@ const PostForm = () => {
             <FormItem>
               <FormLabel>Add Photo</FormLabel>
               <FormControl>
-                <Input  placeholder="Caption" {...field} className="input custom-scrollbar" />
+                <FileUploader />
+                {/* <Input  placeholder="Caption" {...field} className="input custom-scrollbar" /> */}
               </FormControl>
               <FormMessage />
             </FormItem>
