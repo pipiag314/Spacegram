@@ -11,17 +11,21 @@ export function calculateTimeAgo(fullDate: string): string {
   const pastDate = new Date(fullDate);
 
   const timeDifference = currentDate.getTime() - pastDate.getTime();
-  const millisecondsInOneHour = 1000 * 60 * 60;
+  const millisecondsInOneMinute = 1000 * 60;
+  const millisecondsInOneHour = millisecondsInOneMinute * 60;
   const millisecondsInOneDay = millisecondsInOneHour * 24;
 
-  const daysAgo = Math.floor(timeDifference / millisecondsInOneDay);
+  const minutesAgo = Math.floor(timeDifference / millisecondsInOneMinute);
   const hoursAgo = Math.floor((timeDifference % millisecondsInOneDay) / millisecondsInOneHour);
+  const daysAgo = Math.floor((timeDifference % millisecondsInOneHour) / millisecondsInOneDay);
 
   if (daysAgo > 0) {
-      return `${daysAgo} day${daysAgo === 1 ? '' : 's'} ago`;
+    return `${daysAgo} day${daysAgo === 1 ? '' : 's'} ago`;
   } else if (hoursAgo > 0) {
-      return `${hoursAgo} hour${hoursAgo === 1 ? '' : 's'} ago`;
+    return `${hoursAgo} hour${hoursAgo === 1 ? '' : 's'} ago`;
+  } else if (minutesAgo > 0) {
+    return `${minutesAgo} minute${minutesAgo === 1 ? '' : 's'} ago`;
   } else {
-      return "Less than an hour ago";
+    return "Just now";
   }
 }
