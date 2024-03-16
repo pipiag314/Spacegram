@@ -24,3 +24,11 @@ export type UserContextType = {
     setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>;
     checkAuthUser: () => Promise<boolean>;
 }
+
+export type PostType = {
+    caption: string;
+    tags?: string;
+    location?: string;
+    file: File[];
+    userId: string;
+}
