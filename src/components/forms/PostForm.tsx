@@ -13,6 +13,7 @@ import { useCreatePost } from "@/lib/query/mutations";
 import { useUserContext } from "@/context/UserContext";
 import { useToast } from "../ui/use-toast";
 import { useNavigate } from "react-router-dom";
+import Loader from "../shared/Loader";
 
 type PostFormProps = {
   post?: Models.Document;
@@ -115,7 +116,15 @@ const PostForm = ({ post }: PostFormProps) => {
         />
         <div className="flex justify-end gap-5 items-center">
             <Button type="button" className="">Cancel</Button>
-            <Button type="submit" className="button-primary">Submit</Button>
+            <Button type="submit" className="button-primary">
+              {isCreatingPost ? (
+                <div className="flex-center gap-2">
+                  <Loader /> Loading...
+                </div>
+              ) : (
+                "Submit"
+              )}
+            </Button>
         </div>
       </form>
     </Form>
