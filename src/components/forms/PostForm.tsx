@@ -8,7 +8,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Textarea } from "@/components/ui/textarea"
 import { Input } from "../ui/input";
 import FileUploader from "../shared/FileUploader";
-import { ID, Models } from "appwrite";
+import { Models } from "appwrite";
 import { useCreatePost } from "@/lib/query/mutations";
 import { useUserContext } from "@/context/UserContext";
 import { useToast } from "../ui/use-toast";
