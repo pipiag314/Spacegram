@@ -163,3 +163,19 @@ export const createNewPost = async (post: PostType) => {
         console.log("Error while saving post into DB: ", error)
     }
 }
+
+export const getRecentPosts = async () => {
+    try {
+        const posts = databases.listDocuments(
+            appwriteConfig.databaseId,
+            appwriteConfig.postsCollectionId,
+            [Query.orderDesc("$createdAt"), Query.limit(20)]
+        )
+    
+        if(!posts) throw new Error("No posts found in DB")
+    
+        return posts
+    } catch (error) {
+        console.log("Error occured while getting recent posts from DB: ", error);        
+    }
+}
