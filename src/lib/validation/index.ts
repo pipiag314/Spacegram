@@ -14,14 +14,13 @@ export const signInValidation = z.object({
 })
 
 
-const MAX_FILE_SIZE = 1024 * 1024 * 5;
+const MAX_FILE_SIZE = 1024 * 1024 * 5; /* 5MB */
 
 export const createPostValidation = z.object({
   caption: z.string().min(2, {
     message: "Captions must be at least 2 characters.",
   }),
-  file: z.instanceof(File).refine((file) => {
-    return !file || file.size <= MAX_FILE_SIZE
-  }, "File size must be less than 5MB"),
-  tags: z.string().optional()
+  file: z.custom<File[]>(),
+  tags: z.string().optional(),
+  location: z.string().min(2).max(120)
 });
