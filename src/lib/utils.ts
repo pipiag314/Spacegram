@@ -29,3 +29,11 @@ export function calculateTimeAgo(fullDate: string): string {
     return "Just now";
   }
 }
+
+
+export function checkIfUserLikedPost(userId: string, likesArray: string[]) {
+  const userHaveLikedPost = likesArray.find(likedUsersId => likedUsersId === userId)
+  if(userHaveLikedPost) return true;
+  return false;
+}
+
