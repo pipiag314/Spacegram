@@ -179,3 +179,57 @@ export const getRecentPosts = async () => {
         console.log("Error occured while getting recent posts from DB: ", error);        
     }
 }
+
+export const likePost = async (postId: string, likesArray: string[]) => {
+    try {
+        const updatedPost = await databases.updateDocument(
+            appwriteConfig.databaseId,
+            appwriteConfig.postsCollectionId,
+            postId,
+            {
+                likes: likesArray
+            }
+        )
+
+        if(!updatedPost) throw new Error("Error, cannot updated post while liking")
+
+        return updatedPost;
+    } catch (error) {
+        console.log("Error occured while liking the post: ", error)
+    }
+}
+
+export const savePost = async (postId: string, userId: string) => {
+    try {
+        const savedPost = await databases.createDocument(
+            appwriteConfig.databaseId,
+            appwriteConfig.savesCollectionId,
+            ID.unique(),
+            {
+                user: userId,
+                post: postId
+            },
+        )
+
+        if(!savedPost) throw new Error("Error, cannot saved post")
+        
+    } catch (error) {
+        console.log("Error occured while saving the post: ", error)
+    }
+}
+
+export const deleteSavedPost = async (savedPostId: string) => {
+    try {
+        const res = await databases.deleteDocument(
+            appwriteConfig.databaseId,
+            appwriteConfig.savesCollectionId,
+            savedPostId
+        );
+
+        if(!res) throw new Error("Error, cannot delete saved post");
+
+        return res;
+    } catch (error) {
+        console.log("Error occured while deleting saved post: ", error)
+    }
+}
