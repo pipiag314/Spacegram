@@ -3,6 +3,7 @@ import { useUserContext } from "@/context/UserContext";
 import { calculateTimeAgo } from "@/lib/utils";
 import { Models } from "appwrite";
 import { Link } from "react-router-dom";
+import PostStats from "./PostStats";
 
 type PostCardProps = {
   post: Models.Document;
@@ -53,7 +54,7 @@ const PostCard = ({ post }: PostCardProps) => {
         </div>
       </div>
 
-      <Link to={`/posts/${post.$id}`}>
+      <Link to={`/posts/${post.$id}`} className="">
         <div className="text-[14px] font-medium leading-[140%] py-5">
           <p>{post.caption}</p>
           <ul className="flex gap-1 mt-2">
@@ -71,6 +72,9 @@ const PostCard = ({ post }: PostCardProps) => {
           className="post-card-img"
         />
       </Link>
+
+      <PostStats post={post} userId={user.id} />
+
     </div>
   );
 };
